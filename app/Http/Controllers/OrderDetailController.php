@@ -24,7 +24,8 @@ class OrderDetailController extends Controller
      */
     public function index()
     {
-        return view('reports.index');
+       $order_details = Order_detail::all();
+        return view('reports.index', compact('order_details'));
         
     }
     
@@ -55,9 +56,17 @@ class OrderDetailController extends Controller
      * @param  \App\Models\Order_detail  $order_detail
      * @return \Illuminate\Http\Response
      */
-    public function getReports()
+    public function getReports(Request $request)
     {
-        $products = Order_detail::paginate(5);
+        $products =  Order_detail::paginate(15);
+        // if($request->start_date){
+        //     $products = $products->where('created_at','>=',$request->start_date);
+        // }
+
+        // if($request->end_date){
+        //     $products = $products->where('created_at','<=',$request->end_start .'23:59:59');
+        // }
+        // $products = $products->with([''])->lastest()->paginate(10);
 
         return view('reports.daily_report', compact('products'));
     }
@@ -70,7 +79,7 @@ class OrderDetailController extends Controller
      */
     public function edit(Order_detail $order_detail)
     {
-        //
+        
     }
 
     /**

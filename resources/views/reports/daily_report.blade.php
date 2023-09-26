@@ -27,10 +27,10 @@
                             </ol>
                         </nav>
                     </div>
-
+               {{-- {{$details ?? 'nothing'}} --}}
                 </div>
-                @include('inc.msg')
-                <div class="d-lg-flex align-items-center mb-4 gap-3">
+                {{-- @include('inc.msg') --}}
+                {{-- <div class="d-lg-flex align-items-center mb-4 gap-3">
                     <div class="position-relative">
                         <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order"> <span
                             class="position-absolute top-50 product-show translate-middle-y"><i
@@ -40,7 +40,7 @@
                         class="btn btn-primary radius-30 mt-2 mt-lg-0 add_more" ><i class="bx bxs-plus-square add_more" ></i>Grid Mode</a>
                     </div>
                   
-                </div>
+                </div> --}}
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive">
@@ -48,34 +48,34 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Product Name</th>
+                                        {{-- <th>Product Name</th>
                                         <th>Product Image</th>
-                                        <th>Description</th>
-                                        <th>Brand</th>
-                                        <th>Price</th>
-                                        <th>Supplier Price</th>
+                                        <th>Description</th> --}}
                                         <th>Quantity</th>
-                                        <th>Form</th>
-                                        <th>Expire Date</th>
-                                        <th>Stock Alert</th>
-                                        <th> Actions</th>
+                                        <th>Unit Price</th>
+                                        <th>Amount</th>
+                                        <th>Discount</th>
+                                        {{-- <th>Form</th>
+                                        <th>Expire Date</th> --}}
+                                        {{-- <th>Stock Alert</th>
+                                        <th> Actions</th> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($products as $key => $product)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $product->product_name }}</td>
-                                            <td><img src="/storage/products/{{ $product->product_img }}" class="user-img"
-                                                    alt=""></td>
-                                            <td><a href="#" class="btn btn-info btn-sm text-light" data-bs-toggle="modal"
+                                            {{-- <td>{{ $product->product_name }}</td> --}}
+                                            {{-- <td><img src="/storage/products/{{ $product->product_img }}" class="user-img"
+                                                    alt=""></td> --}}
+                                            {{-- <td><a href="#" class="btn btn-info btn-sm text-light" data-bs-toggle="modal"
                                                     data-bs-target="#description{{ $product->id }}"><i
-                                                        class="bx bxs-search text-light"></i>View</a></td>
-                                            <td>{{ $product->brand }}</td>
+                                                        class="bx bxs-search text-light"></i>View</a></td> --}}
+                                            <td>{{ $product->quantity }}</td>
                                             <td>#{{ number_format($product->price, 2) }}</td>
                                             <td>#{{ number_format($product->supplierprice, 2) }}</td>
                                             <td>{{ $product->quantity }}</td>
-                                            <td>{{ $product->form }}</td>
+                                            {{-- <td>{{ $product->form }}</td>
                                             <td>{{ $product->expiredate }}</td>
                                             <td>
                                                 @if ($product->stock_alert >= $product->quantity)
@@ -85,8 +85,8 @@
                                                     <span class="badge bg-success">{{ $product->stock_alert }}</span>
                                                 @endif
 
-                                            </td>
-                                            <td>
+                                            </td> --}}
+                                            {{-- <td>
                                                 <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                                     data-bs-target="#editProduct{{ $product->id }}"><i
                                                         class="bx bxs-edit"></i>Edit</a>
@@ -94,7 +94,7 @@
                                                 <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                     data-bs-target="#deleteProduct{{ $product->id }}"><i
                                                         class="bx bxs-trash"></i>Delete</a>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                         <!--Edit Product Modal -->
                                         <div class="modal fade" id="editProduct{{ $product->id }}" tabindex="-1"
