@@ -58,15 +58,8 @@ class OrderDetailController extends Controller
      */
     public function getReports(Request $request)
     {
-        $products =  Order_detail::paginate(15);
-        // if($request->start_date){
-        //     $products = $products->where('created_at','>=',$request->start_date);
-        // }
-
-        // if($request->end_date){
-        //     $products = $products->where('created_at','<=',$request->end_start .'23:59:59');
-        // }
-        // $products = $products->with([''])->lastest()->paginate(10);
+        $products =  Product::orderBy('created_at', 'asc')->get();
+        // dd($products);
 
         return view('reports.daily_report', compact('products'));
     }
