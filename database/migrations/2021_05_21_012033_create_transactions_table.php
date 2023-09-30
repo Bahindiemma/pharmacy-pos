@@ -15,8 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            $table->integer('user_id'); 
+            $table->foreignId('order_id')->constrained('orders');
             $table->integer('transaction_amount'); 
             $table->integer('paid_amount');
             $table->integer('balance');

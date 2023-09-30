@@ -22,10 +22,24 @@ class OrderDetailController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       $order_details = Order_detail::all();
-        return view('reports.index', compact('order_details'));
+            //    dd($request->all());
+
+                // $products =  new Order_detail();
+                // if($request->start_date){
+                //     $products = $products->where('created_at', ">=" ,$request->input("start_date"));
+                // }
+                // if ($request->end_date) {
+                //     $products = $products->where('created_at', "<=" ,$request->input("end_date")."23:59:59");
+                // }
+                // $date = $products->created_at;
+              $products= Order_detail::whereBetween('created_at', [$request->input("start_date"),$request->input("end_date")])->get();
+                // $products = $products->paginate(10);
+            //    dd($request);
+        return view('reports.daily_report', compact('products'));
+    //    $order_details = Order_detail::all();
+    //     return view('reports.index', compact('order_details'));
         
     }
     
@@ -58,8 +72,23 @@ class OrderDetailController extends Controller
      */
     public function getReports(Request $request)
     {
-        $products =  Product::orderBy('created_at', 'asc')->get();
-        // dd($products);
+       
+
+        $products =  new Order_detail();
+if($request->start_date){
+    $products = $products->where('order_id', ">=" ,$request->start_date);
+}
+if ($request->end_date) {
+    $products = $products->where('order_id', "<=" ,$request->end_date."23:59:59");
+}
+$products = $products->paginate(10);
+        // foreach ($products as $key => $value) {
+        
+        //         // dd($value->order->name);
+        //       dd($value->pdt->product_name);
+        // }
+        // dd($products->order->name);
+
 
         return view('reports.daily_report', compact('products'));
     }

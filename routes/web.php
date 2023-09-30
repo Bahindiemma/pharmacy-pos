@@ -41,7 +41,7 @@ Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index
 
 Route::resource('orders', OrderController::class);
 Route::resource('report', OrderDetailController::class);
-Route::get('reports/list', [App\Http\Controllers\OrderDetailController::class, 'getReports'])->name('reports');
+#// Route::get('reports/list', [App\Http\Controllers\OrderDetailController::class, 'getReports'])->name('reports');
 Route::resource('products', ProductController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('users', UserController::class);

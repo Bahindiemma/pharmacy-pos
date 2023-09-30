@@ -186,13 +186,14 @@
 
 
                     @foreach ($order_receipt as $key => $receipt)
+                    {{-- @dd($receipt) --}}
                         <tr class="service">
                             <td class="tableitem">
                             
                                 <p class="itemmake">{{ $key + 1 }}.</p>
                             </td>
                             <td class="tableitem">
-                                <p class="itemmake">{{ $receipt->product->product_name }}</p>
+                                {{-- <p class="itemmake">{{ $receipt->product }}</p> --}}
                             </td>
                             <td class="tableitem">
                                 <p class="itemtext">{{ $receipt->quantity }}</p>

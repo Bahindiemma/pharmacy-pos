@@ -5,7 +5,6 @@
     <div class="modal fade" id="printMode" tabindex="-1" aria-hidden="true">
         @include('reports.receipt')
     </div>
-
     <div class="wrapper">
         <div class="page-wrapper">
             <div class="page-content">
