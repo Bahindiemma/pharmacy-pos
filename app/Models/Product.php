@@ -13,7 +13,7 @@ use App\Models\User;
 class Product extends Model
 {
     protected $table = 'products';
-    protected $fillable = [ 'supplier_id','product_name', 'description', 'brand', 'price', 'quantity', 'product_img', 'supplier_price', 'stock_alert', 'form', 'expiredate '];
+    protected $fillable = [ 'supplier_id','product_name', 'description', 'brand', 'price', 'quantity', 'product_img', 'supplier_price', 'stock_alert', 'form', 'expiredate ','batch_number'];
 
     
     // public function orderdetail()

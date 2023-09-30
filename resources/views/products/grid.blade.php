@@ -41,6 +41,7 @@
             </div> --}}
             <div class="card-body">
                 <h6 class="card-title cursor-pointer">{{$product->product_name}}</h6>
+                <h6 class="card-title cursor-pointer">{{$product->product_name}}</h6>
                 <div class="clearfix">
                     <p class="mb-0 float-start"><strong>{{$product->brand}}</strong></p>
                     <p class="mb-0 float-end fw-bold"><span class="me-2 text-decoration-line-through text-secondary"></span><span>#{{$product->price}}</span></p>

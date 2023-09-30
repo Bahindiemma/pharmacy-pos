@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+use App\Models\Transaction;
+use App\Models\Order;
+use App\Models\Product;
 
 class DashboardController extends Controller
 {
@@ -23,6 +27,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+
+          $suppliers=Supplier::all();
+          $transactions=Transaction::all();
+          $order=Order::all();
+          $products=Product::all();
+        //   dd($suppliers); 
+
+        return view('dashboard',['suppliers'=>$suppliers,
+          "transactions"=>$transactions,
+          "order"=>$order,
+          "products"=>$products,
+
+    ]);             
     }
 }

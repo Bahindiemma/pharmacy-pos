@@ -8,6 +8,20 @@
         svg {
             display: none;
         }
+
+        .form {
+            display: flex;
+            justify-content: center;
+            align-items: center
+                /* background-color: green; */
+                /* justify-content: space-evenly; */
+        }
+
+        .formsearch {
+            /* background-color: green; */
+            /* padding:10px; */
+            /* margin-top: 1rem; */
+        }
     </style>
     <!--wrapper-->
     <div class="wrapper">
@@ -27,30 +41,26 @@
                         </nav>
                     </div>
                 </div>
-                {{--
+
                 <form action="{{ route('report.index') }}">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label for="start_date">Start Date</label>
-                                <input type="date" value="{{ request('start_date') }}" class="form-control"
-                                    name="start_date" />
-                            </div>
 
-                            <div class="col-md-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="start_date">Start Date</label>
+                            <input type="date" value="{{ request('start_date') }}" class="form-control"
+                                name="start_date" />
+                        </div>
 
-                                <label for="end_date">End Date</label>
-                                <input type="date" value="{{ request('end_date') }}" class="form-control"
-                                    name="end_date" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="submit" class="btn btn-primary" value="Search">
-                            </div>
+                        <div class="col-md-3">
+                            <label for="end_date">End Date</label>
+                            <input type="date" value="{{ request('end_date') }}" class="form-control" name="end_date" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" class="btn btn-primary" value="Search">
                         </div>
                     </div>
 
-                </form> --}}
-
+                </form>
                 <div class="card">
                     <div class="card-body">
                         <form action="{{ route('report.index') }}">
@@ -81,6 +91,7 @@
                                     <th>#</th>
                                     <th>Ordername</th>
                                     <th>Productname</th>
+                                    <th>Batch Number</th>
                                     <th>Quantity</th>
                                     <th>Unit Price</th>
                                     <th>Amount</th>
@@ -96,6 +107,7 @@
                                         {{-- <td>{{ $value->pdt->id }}</td> --}}
                                         <td>{{ $value->order->name }}</td>
                                         <td>{{ $value->pdt->product_name }}</td>
+                                        <td>{{ $value->pdt->batch_number }}</td>
                                         <td>{{ $value->quantity }}</td>
                                         <td>{{ number_format($value->unit_price, 2) }}</td>
                                         <td>{{ number_format($value->amount, 2) }}</td>
