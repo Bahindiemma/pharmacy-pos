@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Supplier;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Supplier::create([
+            "supplier_name"=>"Eliod",
+            "address"=>"Kikoni",
+            "mobile"=>"0780487574",
+            "email"=>"elioda@gmail.com"
+        ],[
+            "supplier_name"=>"Bruno",
+            "address"=>"Makerere",
+            "mobile"=>"0780423454",
+            "email"=>"bruno@gmail.com"
+        ],
+        [
+            "supplier_name"=>"Ema",
+            "address"=>"Wandegeya",
+            "mobile"=>"0780423452",
+            "email"=>"ema@gmail.com"
+        ]
+    );
     }
 }
