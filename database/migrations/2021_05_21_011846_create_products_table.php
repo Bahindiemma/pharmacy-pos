@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('quantity');
             $table->integer('stock_alert')->default('100');
             $table->string('product_img')->default('product.png');
+            $table->string('batch_number');
             $table->timestamps();
         });
     }

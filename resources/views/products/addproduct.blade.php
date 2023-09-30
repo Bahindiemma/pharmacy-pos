@@ -55,6 +55,11 @@
                                                 <input type="text" class="form-control" id="brand"
                                                     placeholder="Enter Product Brand" name="brand">
                                             </div>
+                                            <div class="col-12">
+                                                <label for="brand" class="form-label">Batch Number</label>
+                                                <input type="text" class="form-control" id="brand"
+                                                    placeholder="Enter Product Brand" name="batch_number">
+                                            </div>
                                             <div class="col-md-6">
                                                 <label for="inputPrice" class="form-label">Selling Price</label>
                                                 <input type="number" class="form-control" id="Price" name="price"

@@ -30,8 +30,8 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Total Customers</p>
-                                    <h4 class="my-1 text-info">1,500,00</h4>
+                                    <p class="mb-0 text-secondary">Total Products</p>
+                                    <h4 class="my-1 text-info">{{$products->count()}}</h4>
                                     {{-- <p class="mb-0 font-13">+50.8% from last week</p> --}}
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
@@ -47,7 +47,7 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Total Suppliers</p>
-                                    <h4 class="my-1 text-danger">10</h4>
+                                    <h4 class="my-1 text-danger">{{ $suppliers->count() }}</h4>
                                     {{-- <p class="mb-0 font-13">+94.7% from last week</p> --}}
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto"><i
@@ -62,8 +62,8 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Out of Stock</p>
-                                    <h4 class="my-1 text-success">15</h4>
+                                    <p class="mb-0 text-secondary">Orders</p>
+                                    <h4 class="my-1 text-success">{{$order->count()}}</h4>
                                     {{-- <p class="mb-0 font-13">-2.7% from last week</p> --}}
                                 </div>
                                 <div class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"><i
@@ -96,9 +96,9 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Total Invoices</p>
+                                    <p class="mb-0 text-secondary">Total Transactions</p>
                                     <h4 class="my-1 text-warning">
-                                        <h4 class="my-1 text-danger">100</h4>
+                                        <h4 class="my-1 text-danger">{{$transactions->count()}}</h4>
                                     </h4>
                                     {{-- <p class="mb-0 font-13">+20.6% from last week</p> --}}
                                 </div>
@@ -188,38 +188,45 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="card radius-10 border-start border-0 border-3 border-warning">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <p class="mb-0 text-secondary">Add New Purchase</p>
-                                </div>
-                                <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
-                                        fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path
-                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                    </svg>
+                    <a href="addproduct" style="text-decoration: none; color: inherit;">
+                        <div class="card radius-10 border-start border-0 border-3 border-warning">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">Add New Purchase</p>
+                                    </div>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                            fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                            <path
+                                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                        </svg>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
+                
+                {{-- purchase report  --}}
                 <div class="col">
-                    <div class="card radius-10 border-start border-0 border-3 border-warning">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <p class="mb-0 text-secondary">Purchase Report</p>
-                                </div>
-                                <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
-                                        class='bx bxs-group'></i>
+                    <a href="{{ route('report.index') }}" style="text-decoration: none; color: inherit;">
+                        <div class="card radius-10 border-start border-0 border-3 border-warning">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div>
+                                        <p class="mb-0 text-secondary">Purchase Report</p>
+                                    </div>
+                                    <div class="widgets-icons-2 rounded-circle bg-gradient-blooker text-white ms-auto"><i
+                                            class='bx bxs-group'></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
+                
             </div><!--end row-->
         </div>
     </div>

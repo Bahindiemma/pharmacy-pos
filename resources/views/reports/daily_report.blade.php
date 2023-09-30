@@ -8,6 +8,18 @@
         svg {
             display: none;
         }
+        .form{
+            display: flex;
+            justify-content: center;
+            align-items:center
+            /* background-color: green; */
+            /* justify-content: space-evenly; */
+        }
+        .formsearch{
+      /* background-color: green; */
+      /* padding:10px; */
+      /* margin-top: 1rem; */
+        }
     </style>
     <!--wrapper-->
     <div class="wrapper">
@@ -28,26 +40,28 @@
                     </div>
                 </div>
 
-                <form action="{{ route('report.index') }}">
+                <form action="{{ route('report.index') }}" style="margin:2rem">
 
-                    <div class="row">
-                        <div class="col-md-3">
+                    <div class="row form">
+                        <div class="col-md-4 formsearch">
                             <label for="start_date">Start Date</label>
                             <input type="date" value="{{ request('start_date') }}" class="form-control"
                                 name="start_date" />
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4 formsearch">
                             <label for="end_date">End Date</label>
                             <input type="date" value="{{ request('end_date') }}" class="form-control" name="end_date" />
                         </div>
-                        <div class="col-md-3">
-                            <input type="submit" class="btn btn-primary" value="Search">
+                        <div class="col-md-4 mt-3">
+                            <input type="submit" class="btn btn-primary d-block" value="Search">
                         </div>
+                      
                     </div>
+                    
 
                 </form>
-                <div class="card">
+                <div class="card" style="padding:1rem">
                     <div class="card-body">
                     </div>
                     <div class="table-responsive">
@@ -58,6 +72,7 @@
                                     <th>#</th>
                                     <th>Ordername</th>
                                     <th>Productname</th>
+                                    <th>Batch Number</th>
                                     <th>Quantity</th>
                                     <th>Unit Price</th>
                                     <th>Amount</th>
@@ -73,6 +88,7 @@
                                         {{-- <td>{{ $value->pdt->id }}</td> --}}
                                         <td>{{ $value->order->name }}</td>
                                         <td>{{ $value->pdt->product_name }}</td>
+                                        <td>{{ $value->pdt->batch_number }}</td>
                                         <td>{{ $value->quantity }}</td>
                                         <td>{{ number_format($value->unit_price, 2) }}</td>
                                         <td>{{ number_format($value->amount, 2) }}</td>

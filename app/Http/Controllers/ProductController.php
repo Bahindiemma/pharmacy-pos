@@ -77,6 +77,7 @@ class ProductController extends Controller
         $products = new Product;
         $products->product_name = $request->product_name;
         $products->description = $request->description;
+        $products->batch_number = $request->batch_number;
         $products->brand =$request->brand;
         $products->price =$request->price;
         $products->quantity =$request->quantity;
@@ -86,7 +87,7 @@ class ProductController extends Controller
         $products->expiredate = $request->expiredate;
         $products->product_img = $fileNameToStore;
         
-        // dd($products);
+        
         $supplier->products()->save($products);
         return redirect('/products')->with('success', 'Product Added Successfully');
         return redirect()->back()->with('error', 'Product Registration Failed!');
