@@ -15,11 +15,10 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            // $table->foreignId('order_id')->constrained('orders');
-            $table->integer('product_id');
+            $table->foreignId('order_id')->constrained('orders');
+            $table->foreignId('product_id')->constrained('products');
             $table->integer('quantity');
-            $table->integer('unitprice');
+            $table->integer('unit_price');
             $table->integer('amount');
             $table->integer('discount')->nullable();
             $table->timestamps();

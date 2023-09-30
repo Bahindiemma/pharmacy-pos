@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -50,8 +51,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
-        
+
 
         if($request->hasFile('product_img')){
             //Get file name
@@ -69,8 +71,8 @@ class ProductController extends Controller
             $fileNameToStore = 'product.png';
         }
 
-
-
+        $supplier=Supplier::find(1);
+        // dd($supplier);
      
         $products = new Product;
         $products->product_name = $request->product_name;
@@ -78,13 +80,14 @@ class ProductController extends Controller
         $products->brand =$request->brand;
         $products->price =$request->price;
         $products->quantity =$request->quantity;
-        $products->supplierprice = $request->supplierprice;
+        $products->supplier_price = $request->supplier_price;
         $products->stock_alert = $request->stock_alert;
         $products->form = $request->form;
         $products->expiredate = $request->expiredate;
         $products->product_img = $fileNameToStore;
         
-        $products ->save();
+        // dd($products);
+        $supplier->products()->save($products);
         return redirect('/products')->with('success', 'Product Added Successfully');
         return redirect()->back()->with('error', 'Product Registration Failed!');
     }
@@ -122,6 +125,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         // $product->update($request->all());
         // return redirect()->back()->with('success', 'Product Updated Successfully');
 
@@ -150,13 +154,15 @@ class ProductController extends Controller
         $products->brand =$data['brand'];
         $products->price =$data['price'];
         $products->quantity =$data['quantity'];
-        $products->supplierprice = $data['supplierprice'];
+        $products->supplierprice = $data['supplier_price'];
         $products->stock_alert = $data['stock_alert'];
         $products->form = $data['form'];
         $products->expiredate = $data['expiredate'];
         $products->product_img = $fileNameToStore;
-        
+       
+
         $products ->save();
+      
         return redirect()->back()->with('success', 'Product Updated Successfully');
         return redirect()->back()->with('error', 'Product Registration Failed!');
     }

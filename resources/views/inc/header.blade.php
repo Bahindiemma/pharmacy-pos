@@ -59,7 +59,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{ route('reports') }}">
+                <a href="{{ route('report.index') }}">
                     <div class="parent-icon"><i class='bx bx-file'></i>
                     </div>
                     <div class="menu-title">Reports</div>

@@ -37,7 +37,7 @@ class OrderController extends Controller
          //Display Last Order details
          $lastId = Order_detail::max('order_id');
          $order_receipt = Order_detail::where('order_id', $lastId)->get();
-
+// dd($order_receipt);
         return view('orders.index', ['products' => $products, 'order' => $orders, 'order_receipt' => $order_receipt]);
     }
 
@@ -58,23 +58,26 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+ 
     {
         // return $request->all(); 
+       
 
         DB::transaction(function () use ($request) {
             //Order Model
             $orders = new Order;
             $orders->name = $request->customerName;
             $orders->mobile = $request->customerMobile;
+            $orders->user_id = auth()->user()->id;
             $orders->save();
-            $order_id =  $orders->id;  
+            $order_id = $orders->id;
 
             //Order Details
             for($product_id = 0; $product_id < count($request->product_id); $product_id++){
-                $order_details = new Order_detail;
+                $order_details = new Order_detail();
                 $order_details->order_id = $order_id;
                 $order_details->product_id  = $request->product_id[$product_id];
-                $order_details->unitprice  = $request->price[$product_id];
+                $order_details->unit_price  = $request->price[$product_id];
                 $order_details->quantity  = $request->quantity[$product_id];
                 $order_details->discount  = $request->discount[$product_id];
                 $order_details->amount  = $request->total_amount[$product_id];
@@ -84,7 +87,7 @@ class OrderController extends Controller
             //Transaction
             $transaction = new Transaction();
             $transaction->order_id = $order_id;
-            $transaction->user_id = auth()->user()->id;
+            // $transaction->user_id = auth()->user()->id;
             $transaction->balance  = $request->balance;
             $transaction->paid_amount  = $request->paidAmount;
             $transaction->payment_method  = $request->paymentMethod;

@@ -63,7 +63,7 @@
                                             <div class="col-md-6">
                                                 <label for="inputCompareatprice" class="form-label">Supplier Price</label>
                                                 <input type="number" class="form-control" id="inputCompareatprice"
-                                                  name="supplierprice"  placeholder="00.00">
+                                                  name="supplier_price"  placeholder="00.00">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="quantity" class="form-label">Quantity</label>
