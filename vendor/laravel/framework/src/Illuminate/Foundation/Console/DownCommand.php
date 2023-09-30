@@ -7,8 +7,10 @@ use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Events\MaintenanceModeEnabled;
 use Illuminate\Foundation\Exceptions\RegisterErrorViewPaths;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Throwable;
 
+#[AsCommand(name: 'down')]
 class DownCommand extends Command
 {
     /**
@@ -38,29 +40,27 @@ class DownCommand extends Command
     public function handle()
     {
         try {
-            if (is_file(storage_path('framework/down'))) {
-                $this->comment('Application is already down.');
+            if ($this->laravel->maintenanceMode()->active()) {
+                $this->components->info('Application is already down.');
 
                 return 0;
             }
 
-            file_put_contents(
-                storage_path('framework/down'),
-                json_encode($this->getDownFilePayload(), JSON_PRETTY_PRINT)
-            );
+            $this->laravel->maintenanceMode()->activate($this->getDownFilePayload());
 
             file_put_contents(
                 storage_path('framework/maintenance.php'),
                 file_get_contents(__DIR__.'/stubs/maintenance-mode.stub')
             );
 
-            $this->laravel->get('events')->dispatch(MaintenanceModeEnabled::class);
+            $this->laravel->get('events')->dispatch(new MaintenanceModeEnabled());
 
-            $this->comment('Application is now in maintenance mode.');
+            $this->components->info('Application is now in maintenance mode.');
         } catch (Exception $e) {
-            $this->error('Failed to enter maintenance mode.');
-
-            $this->error($e->getMessage());
+            $this->components->error(sprintf(
+                'Failed to enter maintenance mode: %s.',
+                $e->getMessage(),
+            ));
 
             return 1;
         }
@@ -93,7 +93,7 @@ class DownCommand extends Command
     {
         try {
             return $this->laravel->make(PreventRequestsDuringMaintenance::class)->getExcludedPaths();
-        } catch (Throwable $e) {
+        } catch (Throwable) {
             return [];
         }
     }

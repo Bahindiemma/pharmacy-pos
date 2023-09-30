@@ -6,7 +6,7 @@ use DateTimeInterface;
 use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Support\Facades\Date;
 
-class DatabaseUuidFailedJobProvider implements FailedJobProviderInterface, PrunableFailedJobProvider
+class DatabaseUuidFailedJobProvider implements CountableFailedJobProvider, FailedJobProviderInterface, PrunableFailedJobProvider
 {
     /**
      * The connection resolver implementation.
@@ -60,7 +60,7 @@ class DatabaseUuidFailedJobProvider implements FailedJobProviderInterface, Pruna
             'connection' => $connection,
             'queue' => $queue,
             'payload' => $payload,
-            'exception' => (string) $exception,
+            'exception' => (string) mb_convert_encoding($exception, 'UTF-8'),
             'failed_at' => Date::now(),
         ]);
 
@@ -112,11 +112,14 @@ class DatabaseUuidFailedJobProvider implements FailedJobProviderInterface, Pruna
     /**
      * Flush all of the failed jobs from storage.
      *
+     * @param  int|null  $hours
      * @return void
      */
-    public function flush()
+    public function flush($hours = null)
     {
-        $this->getTable()->delete();
+        $this->getTable()->when($hours, function ($query, $hours) {
+            $query->where('failed_at', '<=', Date::now()->subHours($hours));
+        })->delete();
     }
 
     /**
@@ -138,6 +141,21 @@ class DatabaseUuidFailedJobProvider implements FailedJobProviderInterface, Pruna
         } while ($deleted !== 0);
 
         return $totalDeleted;
+    }
+
+    /**
+     * Count the failed jobs.
+     *
+     * @param  string|null  $connection
+     * @param  string|null  $queue
+     * @return int
+     */
+    public function count($connection = null, $queue = null)
+    {
+        return $this->getTable()
+            ->when($connection, fn ($builder) => $builder->whereConnection($connection))
+            ->when($queue, fn ($builder) => $builder->whereQueue($queue))
+            ->count();
     }
 
     /**

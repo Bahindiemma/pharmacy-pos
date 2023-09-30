@@ -2,7 +2,7 @@
 
 namespace Illuminate\Queue\Failed;
 
-class NullFailedJobProvider implements FailedJobProviderInterface
+class NullFailedJobProvider implements CountableFailedJobProvider, FailedJobProviderInterface
 {
     /**
      * Log a failed job into storage.
@@ -53,10 +53,23 @@ class NullFailedJobProvider implements FailedJobProviderInterface
     /**
      * Flush all of the failed jobs from storage.
      *
+     * @param  int|null  $hours
      * @return void
      */
-    public function flush()
+    public function flush($hours = null)
     {
         //
+    }
+
+    /**
+     * Count the failed jobs.
+     *
+     * @param  string|null  $connection
+     * @param  string|null  $queue
+     * @return int
+     */
+    public function count($connection = null, $queue = null)
+    {
+        return 0;
     }
 }

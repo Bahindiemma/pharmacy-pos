@@ -27,28 +27,51 @@
                         </nav>
                     </div>
                 </div>
-
+                {{--
                 <form action="{{ route('report.index') }}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="start_date">Start Date</label>
+                                <input type="date" value="{{ request('start_date') }}" class="form-control"
+                                    name="start_date" />
+                            </div>
 
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label for="start_date">Start Date</label>
-                            <input type="date" value="{{ request('start_date') }}" class="form-control"
-                                name="start_date" />
-                        </div>
+                            <div class="col-md-3">
 
-                        <div class="col-md-3">
-                            <label for="end_date">End Date</label>
-                            <input type="date" value="{{ request('end_date') }}" class="form-control" name="end_date" />
-                        </div>
-                        <div class="col-md-3">
-                            <input type="submit" class="btn btn-primary" value="Search">
+                                <label for="end_date">End Date</label>
+                                <input type="date" value="{{ request('end_date') }}" class="form-control"
+                                    name="end_date" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="submit" class="btn btn-primary" value="Search">
+                            </div>
                         </div>
                     </div>
 
-                </form>
+                </form> --}}
+
                 <div class="card">
                     <div class="card-body">
+                        <form action="{{ route('report.index') }}">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <b>Start Date</b>
+                                    <input type="date" name="start_date" class="form-control"
+                                        value="{{ request('start_date') }}" />
+                                </div>
+                                <div class="col-md-4">
+                                    <b>End Date</b>
+                                    <input type="date" name="end_date" class="form-control"
+                                        value="{{ request('end_date') }}" />
+                                </div>
+                                <div class="col-md-5">
+
+                                    <input class="btn btn-outline-primary" type="submit" value="Submit" />
+                                </div>
+                            </div>
+                        </form>
+
                     </div>
                     <div class="table-responsive">
 

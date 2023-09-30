@@ -5,7 +5,9 @@ namespace Illuminate\Notifications\Console;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Composer;
+use Symfony\Component\Console\Attribute\AsCommand;
 
+#[AsCommand(name: 'notifications:table')]
 class NotificationTableCommand extends Command
 {
     /**
@@ -31,6 +33,8 @@ class NotificationTableCommand extends Command
 
     /**
      * @var \Illuminate\Support\Composer
+     *
+     * @deprecated Will be removed in a future Laravel version.
      */
     protected $composer;
 
@@ -60,9 +64,7 @@ class NotificationTableCommand extends Command
 
         $this->files->put($fullPath, $this->files->get(__DIR__.'/stubs/notifications.stub'));
 
-        $this->info('Migration created successfully!');
-
-        $this->composer->dumpAutoloads();
+        $this->components->info('Migration created successfully.');
     }
 
     /**
