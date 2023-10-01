@@ -1,0 +1,151 @@
+ <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-3 col-xl-2">
+
+
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary mb-3 mb-lg-0" data-bs-toggle="modal"
+                                            data-bs-target="#exampleScrollableModal"><i class='bx bxs-plus-square'></i>Add
+                                            Product</button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleScrollableModal" tabindex="-1"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">ADD PRODUCT</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="card border-top border-0 border-4 border-primary">
+                                                            <div class="card-body p-5">
+                                                                {{-- <div class="card-title d-flex align-items-center">
+                                                                    <div><i
+                                                                            class="bx bxs-user me-1 font-22 text-danger"></i>
+                                                                    </div>
+                                                                    <h5 class="mb-0 text-danger">User Registration</h5>
+                                                                </div>
+                                                                <hr> --}}
+                                                                <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"
+                                                                    class="row g-3">
+                                                                    @csrf
+                                                                    <div class="col-12">
+                                                                        <label  class="form-label">
+                                                                          Product Name</label>
+                                                                       
+                                                                            <input type="name"
+                                                                                class="form-control border-start-0"
+                                                                                id="product_name" name="product_name"
+                                                                                placeholder="Enter Product Name" required/>
+                                                                        
+                                                                            
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label  class="form-label">
+                                                                          Brand</label>
+                                                                       
+                                                                            <input type="text"
+                                                                                class="form-control border-start-0"
+                                                                                id="brand" name="brand"
+                                                                                placeholder="Enter Brand" required/>
+                                                                       
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <label for="price" class="form-label">
+                                                                          Sell Price</label>
+                                                                        
+                                                                            <input type="number"
+                                                                                class="form-control border-start-0"
+                                                                                id="price" name="price"
+                                                                                placeholder="Enter Sell Price" required/>
+                                                                        
+                                                                    </div>
+
+                                                                    <div class="col-md-6">
+                                                                        <label for="quantity" class="form-label">
+                                                                          Quantity</label>
+                                                                        
+                                                                            <input type="number"
+                                                                                class="form-control border-start-0"
+                                                                                id="quantity" name="quantity"
+                                                                                placeholder="Enter Quantity" required/>
+                                                                        
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <label for="stock_alert" class="form-label">
+                                                                          Stock</label>
+                                                                        
+                                                                            <input type="number"
+                                                                                class="form-control border-start-0"
+                                                                                id="stock_alert" name="stock_alert"
+                                                                                placeholder="Enter Stock" required/>
+                                                                        
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <label for="description" class="form-label">
+                                                                         Description</label>
+                                                                         <textarea class="form-control"  id="description" name="description" id="description" required></textarea>
+                                                                        
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                        <label for="inputPhoneNo" class="form-label">Cover Image</label>
+                                                                        <div class="input-group"> <span
+                                                                                class="input-group-text bg-transparent"><i
+                                                                                    class='bx bxs-user-circle'></i></span>
+                                                                            <input type="file"
+                                                                                class="form-control border-start-0"
+                                                                                name="product_img" 
+                                                                                placeholder="Choose Image" required />
+                                                                        </div>
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="col-md-6">
+                                                                        
+                                                                        <button type="button" class="btn btn-danger w-100"
+                                                                        data-bs-dismiss="modal">Close</button>
+                                                                       
+                                                                        
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button type="submit"
+                                                                        class="btn btn-primary px-5 w-100">Save</button>
+                                                                       
+                                                                        
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-lg-9 col-xl-10">
+                                        <form class="float-lg-end">
+                                            <div class="row row-cols-lg-auto g-2">
+                                                <div class="col-12">
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control ps-5"
+                                                            placeholder="Search User..."> <span
+                                                            class="position-absolute top-50 product-show translate-middle-y"><i
+                                                                class="bx bx-search"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end breadcrumb-->
+                <h6 class="mb-0 text-uppercase">DataTable Import</h6>
+                <hr />
