@@ -1,6 +1,5 @@
 @extends('layouts.dash')
 @section('content')
-
     <!-- Modal -->
     <div class="modal fade" id="printMode" tabindex="-1" aria-hidden="true">
         @include('reports.receipt')
@@ -29,7 +28,8 @@
                             <div class="card-body">
                                 <div class="d-lg-flex align-items-center mb-4 gap-3">
                                     <div class="position-relative">
-                                        <input type="text" class="form-control ps-5 radius-30" placeholder="Search Order">
+                                        <input type="text" class="form-control ps-5 radius-30"
+                                            placeholder="Search Order">
                                         <span class="position-absolute top-50 product-show translate-middle-y"><i
                                                 class="bx bx-search"></i></span>
                                     </div>
@@ -42,63 +42,63 @@
                                 </div>
                                 <form action="{{ route('orders.store') }}" method="POST">
                                     @csrf
-                                <div class="table-responsive">
-                                    <table class="table mb-0">
-                                        <thead class="table-light">
-                                            <tr>
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+                                            <thead class="table-light">
+                                                <tr>
 
-                                                <th>#</th>
-                                                <th>Product Name</th>
-                                                <th>Quantity</th>
-                                                <th>Price</th>
-                                                <th>Disc %</th>
-                                                <th>Total</th>
-                                                <th>Actions</th>
+                                                    <th>#</th>
+                                                    <th>Product Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Price</th>
+                                                    <th>Disc %</th>
+                                                    <th>Total</th>
+                                                    <th>Actions</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody class="addMoreProduct">
-                                            <tr>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="addMoreProduct">
+                                                <tr>
 
-                                                <td>1</td>
-                                                <td>
-                                                    <select name="product_id[]" id="product_id"
-                                                        class="single-select product_id ">
-                                                        <option value="">Select item</option>
-                                                        @foreach ($products as $product)
-                                                            <option data-price="{{ $product->price }}"
-                                                                value="{{ $product->id }}">
-                                                                {{ $product->product_name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <input type="number" name="quantity[]" id="quantity"
-                                                        class="form-control quantity">
-                                                </td>
-                                                <td>
-                                                    <input type="number" name="price[]" id="price"
-                                                        class="form-control price">
-                                                </td>
-                                                <td>
-                                                    <input type="number" name="discount[]" id="discount"
-                                                        class="form-control discount">
-                                                </td>
-                                                <td>
-                                                    <input type="number" name="total_amount[]" id="total_amount "
-                                                        class="form-control total_amount">
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-default"><i class="bx bxs-trash"></i></a>
-                                                </td>
+                                                    <td>1</td>
+                                                    <td>
+                                                        <select name="product_id[]" id="product_id"
+                                                            class="single-select product_id ">
+                                                            <option value="">Select item</option>
+                                                            @foreach ($products as $product)
+                                                                <option data-price="{{ $product->price }}"
+                                                                    value="{{ $product->id }}">
+                                                                    {{ $product->product_name }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="quantity[]" id="quantity"
+                                                            class="form-control quantity">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="price[]" id="price"
+                                                            class="form-control price">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="discount[]" id="discount"
+                                                            class="form-control discount">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" name="total_amount[]" id="total_amount "
+                                                            class="form-control total_amount">
+                                                    </td>
+                                                    <td>
+                                                        <a class="btn btn-default"><i class="bx bxs-trash"></i></a>
+                                                    </td>
 
-                                            </tr>
+                                                </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            
+                                            </tbody>
+                                        </table>
+                                    </div>
+
                             </div>
                         </div>
 
@@ -108,13 +108,13 @@
                             <div class="card-body">
                                 <div class="bg-success p-4">
                                     <h2 class="text-center text-white"> Total:
-                                        <b>#</b><b class="total"> <input type="hidden"  name="total"> 0.00</b>
+                                        <b>#</b><b class="total"> <input type="hidden" name="total"> 0.00</b>
                                     </h2>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table mb-0 table-striped">
                                         <tbody>
-                                            <tr>
+                                            {{-- <tr>
                                                 <td>
                                                     <label for="cutomer" class=""><b>Customer Name:</b></label>
                                                     <input type="name" name="customerName" id="customerName"
@@ -125,7 +125,7 @@
                                                     <input type="number" name="customerMobile" id="customerMobile"
                                                         class="form-control customerMobile">
                                                 </td>
-                                            </tr>
+                                            </tr> --}}
 
                                         </tbody>
                                     </table>
@@ -163,7 +163,8 @@
                                     </table>
                                     <div class="pb-4">
                                         <label for="payment"><b>Payment:</b></label>
-                                        <input class="form-control" name="paidAmount" id="paidAmount" type="number" required />
+                                        <input class="form-control" name="paidAmount" id="paidAmount" type="number"
+                                            required />
                                     </div>
                                     <div class="pb-4">
                                         <label for="change"><b>Change:</b></label>
@@ -172,19 +173,19 @@
                                     <div class="pb-4">
                                         <button type="submit" class="btn btn-primary w-100">Save</button>
                                     </div>
-                                    <div class="pb-4">
+                                    {{-- <div class="pb-4">
                                         <button type="submit" class="btn btn-danger  w-100">Calculator</button>
-                                    </div>
+                                    </div> --}}
                                 </div>
-                            </form>
-                                <button onclick="ReceiptContent('printMode')" class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#print"><i class="bx bxs-printer" ></i>Print</button>
+                                </form>
+                                {{-- <button onclick="ReceiptContent('printMode')" class="btn btn-dark btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#print"><i class="bx bxs-printer" ></i>Print</button> --}}
 
-                                <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#print"><i class="bx bx-history" onclick="Receipt('print')"></i>History</button>
+                                {{-- <button class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#print"><i class="bx bx-history" onclick="Receipt('print')"></i>History</button> --}}
 
-                                <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                data-bs-target="#print"><i class="bx bxs-printer" onclick="Receipt('print')"></i>Report</button>
+                                {{-- <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#print"><i class="bx bxs-printer" onclick="Receipt('print')"></i>Report</button> --}}
                             </div>
                         </div>
 
@@ -194,12 +195,9 @@
             </div>
         </div>
     </div>
-    
-
 @endsection
 
 @section('script')
-
     <script>
         $('.add_more').on('click', function() {
             var product = $('.product_id').html();
@@ -259,9 +257,9 @@
             $(this).parent().parent().remove();
         });
 
-        $('#paidAmount').keyup(function(){
+        $('#paidAmount').keyup(function() {
             var total = $('.total').html();
-            var paidAmount = $(this).val(); 
+            var paidAmount = $(this).val();
             var amount = paidAmount - total;
             $('#balance').val(amount).toFixed(2);
         });
@@ -269,8 +267,9 @@
 
 
         //Report printing Section
-        function ReceiptContent(el){
-            var data = '<input type="button" id="PrintReceiptButton class="PrintReceiptButton" style="display: block; bottom: 10px; width: 100%; border: none; background-color: #000; background-repeat: no-repeat; color: #fff; padding: 14px 28px; font-size: 16px; cursor:pointer; text-align: center" value="Print Receipt"" onClick="window.printMode()">';
+        function ReceiptContent(el) {
+            var data =
+                '<input type="button" id="PrintReceiptButton class="PrintReceiptButton" style="display: block; bottom: 10px; width: 100%; border: none; background-color: #000; background-repeat: no-repeat; color: #fff; padding: 14px 28px; font-size: 16px; cursor:pointer; text-align: center" value="Print Receipt"" onClick="window.printMode()">';
             data += document.getElementById(el).innerHTML
             Receipt = window.open("", "myWin", "left=450, top=130, width=400, height=500");
             Receipt.screnX = 0;
@@ -279,10 +278,8 @@
             Receipt.document.title = "Print Receipt"
             Receipt.focus();
             setTimeout(() => {
-                Receipt.close(); 
+                Receipt.close();
             }, 8000);
         }
-
     </script>
-
 @endsection

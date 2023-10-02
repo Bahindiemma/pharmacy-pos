@@ -10,7 +10,11 @@
     <!--favicon-->
     <link rel="icon" href="{{ asset('dash/img/icon.jpg') }}" type="image/png" />
 
-
+    <style type="text/css">
+        .filter_bg {
+            backdrop-filter: blur(90px)!important;
+        }
+    </style>
 
     <link href="{{ asset('dash/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('dash/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
@@ -63,25 +67,25 @@
     @yield('content')
 
     <script src="{{ asset('dash/js/jquery.js') }}"></script>
+    <script src="{{ asset('dash/js/popper.min.js') }}"></script>
     <script src="{{ asset('dash/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('dash/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
-    <script src="{{ asset('dash/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-    <script src="{{ asset('dash/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
+
     <!-- Bootstrap JS -->
     <script src="{{ asset('dash/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
-    <script src="{{ asset('dash/js/popper.min.js') }}"></script>
+
     <script src="{{ asset('dash/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('dash/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('dash/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('dash/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+    <script src="{{ asset('dash/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
     <script src="{{ asset('dash/plugins/chartjs/js/Chart.min.js') }}"></script>
     <script src="{{ asset('dash/plugins/chartjs/js/Chart.extension.js') }}"></script>
+    <script src="{{ asset('dash/plugins/sparkline-charts/jquery.sparkline.min.js') }}"></script>
     <!--Morris JavaScript -->
     <script src="{{ asset('dash/plugins/raphael/raphael-min.js') }}"></script>
     <script src="{{ asset('dash/plugins/morris/js/morris.js') }}"></script>
     <script src="{{ asset('dash/js/index2.js') }}"></script>
-
-
 
     {{-- <script src="{{ asset('dash/js/bootstrap.bundle.min-1.js') }}"></script> --}}
     <!--plugins-->
