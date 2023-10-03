@@ -38,4 +38,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // public function index()
+    // {
+    //     if (Auth::check()) {
+    //         return redirect('/dashboard'); // Redirect to the dashboard if the user is logged in.
+    //     } else {
+    //         return view('auth.login'); // Show the login page if the user is not logged in.
+    //     }
+    //     return view('auth.login');
+    // }
 }

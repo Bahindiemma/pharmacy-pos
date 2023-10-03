@@ -22,20 +22,10 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
-});
+    return view("auth.login");
+})->middleware(['guest', 'auth']);
+//
 
-
-
-
-
-
-Route::get('showuser', [PagesController::class, 'showusers']);
-Route::get('addproduct', [PagesController::class, 'addproduct']);
-Route::get('grid', [PagesController::class, 'grid']);
-
-
-Auth::routes();
 
 Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
