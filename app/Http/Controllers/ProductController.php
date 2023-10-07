@@ -53,7 +53,7 @@ class ProductController extends Controller
     public function store(Request $request)
 
     {
-
+        //  dd($request);
 
         if($request->hasFile('product_img')){
             //Get file name
@@ -73,7 +73,6 @@ class ProductController extends Controller
 
         $supplier=Supplier::find(1);
         // dd($supplier);
-     
         $products = new Product;
         $products->product_name = $request->product_name;
         $products->description = $request->description;
@@ -126,6 +125,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         
         // $product->update($request->all());
         // return redirect()->back()->with('success', 'Product Updated Successfully');
@@ -147,15 +147,15 @@ class ProductController extends Controller
         }
 
 
-
         $data = $request->input();
         $products = Product::find($id);
         $products->product_name = $data['product_name'];
         $products->description = $data['description'];
+        $products->batch_number = $data['batch_number'];
         $products->brand =$data['brand'];
         $products->price =$data['price'];
         $products->quantity =$data['quantity'];
-        $products->supplierprice = $data['supplier_price'];
+        $products->supplier_price = $data['supplier_price'];
         $products->stock_alert = $data['stock_alert'];
         $products->form = $data['form'];
         $products->expiredate = $data['expiredate'];

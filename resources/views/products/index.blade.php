@@ -52,6 +52,7 @@
                                         <th>Product Image</th>
                                         <th>Description</th>
                                         <th>Brand</th>
+                                        <th>Batch Number</th>
                                         <th>Price</th>
                                         <th>Supplier Price</th>
                                         <th>Quantity</th>
@@ -72,8 +73,9 @@
                                                     data-bs-target="#description{{ $product->id }}"><i
                                                         class="bx bxs-search text-light"></i>View</a></td>
                                             <td>{{ $product->brand }}</td>
-                                            <td>#{{ number_format($product->price, 2) }}</td>
-                                            <td>#{{ number_format($product->supplierprice, 2) }}</td>
+                                            <td>{{ $product->batch_number }}</td>
+                                            <td>{{ number_format($product->price, 2) }}</td>
+                                            <td>{{ number_format($product->supplier_price, 2) }}</td>
                                             <td>{{ $product->quantity }}</td>
                                             <td>{{ $product->form }}</td>
                                             <td>{{ $product->expiredate }}</td>
@@ -107,6 +109,7 @@
                                                             aria-label="Close">
                                                         </button>
                                                         {{ $product->id }}
+                                                        
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="card border-top border-0 border-4 border-primary">
@@ -165,6 +168,17 @@
                                                                                                 value="{{ $product->brand }}"
                                                                                                 name="brand">
                                                                                         </div>
+                                                                                        <div class="col-12">
+                                                                                            <label for="brand"
+                                                                                                class="form-label">
+                                                                                                Batch Number</label>
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                id="brand"
+                                                                                                placeholder="Enter Product batch number"
+                                                                                                value="{{ $product->batch_number }}"
+                                                                                                name="batch_number">
+                                                                                        </div>
                                                                                         <div class="col-md-6">
                                                                                             <label for="inputPrice"
                                                                                                 class="form-label">Selling
@@ -182,9 +196,9 @@
                                                                                                 Price</label>
                                                                                             <input type="number"
                                                                                                 class="form-control"
-                                                                                                value="{{ $product->supplierprice }}"
+                                                                                                value="{{ $product->supplier_price }}"
                                                                                                 id="inputCompareatprice"
-                                                                                                name="supplierprice"
+                                                                                                name="supplier_price"
                                                                                                 placeholder="00.00">
                                                                                         </div>
                                                                                         <div class="col-md-6">
