@@ -9,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Models\Order_detail;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,8 +41,14 @@ Auth::routes();
 Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
 Route::resource('orders', OrderController::class);
+Route::get('orders-details/{id}', [App\Http\Controllers\OrderController::class,'order_details'])->name('Order_details');
+Route::get('orders/receipt/{id}', [App\Http\Controllers\OrderController::class,'order_receipt'])->name('order_receipt');
+
+
+Route::get('/products/{id}', 'ProductController@show')->name('products.show');
+
 Route::resource('report', OrderDetailController::class);
-#// Route::get('reports/list', [App\Http\Controllers\OrderDetailController::class, 'getReports'])->name('reports');
+#// Route::get('reports/list', [App\Http\Controllers\OrderController::class, 'getReports'])->name('reports');
 Route::resource('products', ProductController::class);
 Route::resource('suppliers', SupplierController::class);
 Route::resource('users', UserController::class);

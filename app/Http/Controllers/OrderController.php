@@ -58,72 +58,53 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-
     {
-        // return $request->all();
 
-       /*  $productId = 1; // ID of the product
-        $amountOrdered = 10;
+       $orderId = null;
+        try {
+            DB::transaction(function () use ($request, &$orderId) {
+                // Create Order using Mass Assignment
+                $order = Order::create([
+                    'name' => $request->customerName,
+                    'mobile' => $request->customerMobile,
+                    'user_id' => auth()->user()->id
+                ]);
 
-        $product = DB::table('products')->select('stock_quantity')->where('id', $productId)->first();
+                $orderId = $order->id;
 
-        if ($product->stock_quantity >= $amountOrdered) {
-            echo "The requested amount is available in stock.";
-        } else {
-            echo "The requested amount is not available in stock.";
-        } */
+                // Create Order Details
+                foreach ($request->product_id as $index => $productId) {
+                    $order->orderdetail()->create([
+                        'product_id' => $productId,
+                        'unit_price' => $request->price[$index],
+                        'quantity' => $request->quantity[$index],
+                        'discount' => $request->discount[$index],
+                        'amount' => $request->total_amount[$index]
+                    ]);
 
+                    // Update Product Quantity
+                    Product::findOrFail($productId)->decrement('quantity', $request->quantity[$index]);
+                }
 
-        DB::transaction(function () use ($request) {
-            //Order Model
-            $orders = new Order;
-            $orders->name = $request->customerName;
-            $orders->mobile = $request->customerMobile;
-            $orders->user_id = auth()->user()->id;
-            $orders->save();
-            $order_id = $orders->id;
+                // Create Transaction
+                Transaction::create([
+                    'order_id' => $order->id,
+                    'balance' => $request->balance,
+                    'paid_amount' => $request->paidAmount,
+                    'payment_method' => $request->paymentMethod,
+                    'transaction_amount' => $request->total_amount[array_key_last($request->total_amount)],
+                    'transaction_date' => now()
+                ]);
+            });
 
-            //Order Details
-            for($product_id = 0; $product_id < count($request->product_id); $product_id++){
-                $order_details = new Order_detail();
-                $order_details->order_id = $order_id;
-                $order_details->product_id  = $request->product_id[$product_id];
-                $order_details->unit_price  = $request->price[$product_id];
-                $order_details->quantity  = $request->quantity[$product_id];
-                $order_details->discount  = $request->discount[$product_id];
-                $order_details->amount  = $request->total_amount[$product_id];
-                $order_details->save();
-
-                Product::findOrFail($request->product_id[$product_id])->decrement('quantity', $request->quantity[$product_id]);
-
-
-            }
-
-            //Transaction
-            $transaction = new Transaction();
-            $transaction->order_id = $order_id;
-            // $transaction->user_id = auth()->user()->id;
-            $transaction->balance  = $request->balance;
-            $transaction->paid_amount  = $request->paidAmount;
-            $transaction->payment_method  = $request->paymentMethod;
-            $transaction->transaction_amount  = $order_details->amount;
-            $transaction->transaction_date  = date('Y-m-d');
-            $transaction->save();
-
-            $products = Product::all();
-            $order_details = Order_detail::where('order_id', $order_id)->get();
-            $orderedBy = Order::where('id', $order_id)->get();
-
-            return view('orders.index', [
-                'products' => $products,
-                'order_details' => $order_details,
-                'customer_order' => $orderedBy,
-            ]);
-        });
-        return redirect()->back()->with('success', 'Product Order Successfull');
-
-
+            return redirect()->route('Order_details', ['id' => $orderId])
+                         ->with('success', 'Product Order Successful');
+        } catch (\Exception $e) {
+            // Handle the exception
+            return redirect()->back()->with('error', 'Order creation failed: ' . $e->getMessage());
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -168,5 +149,23 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function order_details($id){
+
+        $order = Order::with('orderdetail', 'orderdetail.pdt') // Adjust according to your relationships
+                 ->findOrFail($id);
+
+    return view('orders.order_details', compact('order'));
+
+    }
+
+    public function order_receipt($id){
+
+        $order = Order::with('orderdetail', 'orderdetail.pdt') // Adjust according to your relationships
+                 ->findOrFail($id);
+
+        return view('reports.order_receipt', compact('order'));
+
     }
 }

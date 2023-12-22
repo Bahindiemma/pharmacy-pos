@@ -98,7 +98,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            
+
                             </div>
                         </div>
 
@@ -194,7 +194,7 @@
             </div>
         </div>
     </div>
-    
+
 
 @endsection
 
@@ -261,7 +261,7 @@
 
         $('#paidAmount').keyup(function(){
             var total = $('.total').html();
-            var paidAmount = $(this).val(); 
+            var paidAmount = $(this).val();
             var amount = paidAmount - total;
             $('#balance').val(amount).toFixed(2);
         });
@@ -279,7 +279,7 @@
             Receipt.document.title = "Print Receipt"
             Receipt.focus();
             setTimeout(() => {
-                Receipt.close(); 
+                Receipt.close();
             }, 8000);
         }
 
