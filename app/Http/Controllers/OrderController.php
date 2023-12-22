@@ -58,10 +58,21 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
- 
+
     {
-        // return $request->all(); 
-       
+        // return $request->all();
+
+       /*  $productId = 1; // ID of the product
+        $amountOrdered = 10;
+
+        $product = DB::table('products')->select('stock_quantity')->where('id', $productId)->first();
+
+        if ($product->stock_quantity >= $amountOrdered) {
+            echo "The requested amount is available in stock.";
+        } else {
+            echo "The requested amount is not available in stock.";
+        } */
+
 
         DB::transaction(function () use ($request) {
             //Order Model
@@ -82,6 +93,10 @@ class OrderController extends Controller
                 $order_details->discount  = $request->discount[$product_id];
                 $order_details->amount  = $request->total_amount[$product_id];
                 $order_details->save();
+
+                Product::findOrFail($request->product_id[$product_id])->decrement('quantity', $request->quantity[$product_id]);
+
+
             }
 
             //Transaction
@@ -93,7 +108,7 @@ class OrderController extends Controller
             $transaction->payment_method  = $request->paymentMethod;
             $transaction->transaction_amount  = $order_details->amount;
             $transaction->transaction_date  = date('Y-m-d');
-            $transaction->save(); 
+            $transaction->save();
 
             $products = Product::all();
             $order_details = Order_detail::where('order_id', $order_id)->get();
