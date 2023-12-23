@@ -16,7 +16,7 @@ class CreateSuppliersTable extends Migration
             $table->id();
 
             $table->string('supplier_name')->default("Ema");;
-            $table->text('address')->nullable();
+            $table->text('address')->default('kampala');
             $table->string('mobile')->default("0783224234");
             $table->string('email')->default("ema@gmail.com");
             $table->timestamps();
